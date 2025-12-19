@@ -17,13 +17,17 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'npm install'
+                dir('backend') {
+                    bat 'npm install'
+                }
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t %APP_NAME% .'
+                dir('backend') {
+                    bat 'docker build -t %APP_NAME% .'
+                }
             }
         }
 
